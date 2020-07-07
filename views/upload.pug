@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title CodePen - file-metadata
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css")
+    link(rel="stylesheet" href="./stylesheets/uploadstyle.css")
+  body
+  header
+    h1(style="text-align:right;padding:2%")
+        a(href="http://localhost:8000/") Home
+    // partial:index.partial.html
+    #container
+      .panel.panel-primary
+        .panel-body
+          span.glyphicon.glyphicon-cloud-upload
+          h3 file uploader
+          span#result
+          br
+          button.btn.btn-primary.upload-btn upload
+          input#upload-file(type="file" name="upload-file" multiple="")
+    // partial
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+    script(src="./javascripts/upload.js")
