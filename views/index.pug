@@ -5,13 +5,18 @@ head
   link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css')
   link(rel='stylesheet' href='./stylesheets/style.css')
 
-
+body
+header
+  p.heading()
+    a(href='http://localhost:8000/') Home &nbsp;&nbsp;  
+    a(href='http://localhost:8000/upload') Upload &nbsp;&nbsp;
+    a(href='http://localhost:8000/auth') Auth &nbsp;
 .container
   h1.heading Your Images
   .gallery
-    //
-      <div class="gallery-item">
-      <img class="gallery-image" src="image">
-      </div>
+    for image in images
+      .gallery-item
+        img.gallery-image(src=''+ image)
+
 // partial
 script(src='./script.js')

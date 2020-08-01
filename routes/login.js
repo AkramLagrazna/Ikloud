@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var funs = require('../fun.js');
 var mysql = require('mysql');
 
 
@@ -9,18 +8,26 @@ router.post('/', function(req, res, next) {
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
-        password: '',
+        password: 'root',
         database: 'Ikloud' });
     connection.connect(function(err) {
     if (err) throw err
-    console.log('DB connection success!');
+    console.log('DB success');
     });
-  connection.query('SELECT * FROM User WHERE email = email AND password = password', [req.body.email,req.body.password] , function(err,result) {
-    if (err) throw err;
-    if (results[0].id =! NULL ) {
-      res.cookie(logged_id, results[0].id); 
+    var inputEmail = String(req.body.user);
+    var inputPass = String(req.body.password);
+    console.log('SELECT ID FROM Users WHERE Email = '+"'"+ inputEmail +"'"+' AND Pass ='+"'"+ inputPass +"'"+' ;');
+    connection.query('SELECT ID FROM Users WHERE Email = '+"'"+ inputEmail +"'"+' AND Pass ='+"'"+ inputPass +"'"+' ;', [req.body.email,req.body.password] , function(err,result) {
+    var ID = result[0].ID;
+    console.log(ID);
+    if (ID >= 0) {
+      res.cookie('user', ID );
       return res.redirect('/');
     } 
-})});
+    if (err) {
+      console.log('RETRY!');
+      return res.redirect('/auth');
+    };
+  })});
 
 module.exports = router;

@@ -5,6 +5,8 @@ var logger = require('morgan');
 var mysql = require('mysql')
 var md5   = require('blueimp-md5')
 var cookieParser = require('cookie-parser');
+var imgur = require('imgur');
+
 
 
 var indexRouter = require('./routes/index');
@@ -12,6 +14,9 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var fileUploadRouter = require('./routes/fileUpload');
+
 
 var app = express();
 const port = process.env.PORT || "8000";
@@ -30,6 +35,8 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/upload', uploadRouter);
 app.use('/loginattempt', loginRouter);
+app.use('/registration', registerRouter);
+app.use('/fileupload', fileUploadRouter);
 
 module.exports = app;
 
